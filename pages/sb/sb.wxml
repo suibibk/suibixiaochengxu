@@ -1,0 +1,12 @@
+<!--pages/sb/sb.wxml-->
+<view class="top">
+  <view class="tops {{new==1?'choice':'nochoice'}}" bindtap="getNewTopics"><text>最新</text></view>
+  <view class="top_span tops"></view>
+  <view class="tops {{month==1?'choice':'nochoice'}}" bindtap="getMonthTopics"><text>月榜</text></view>
+  <view class="top_span tops"></view>
+  <view class="tops {{year==1?'choice':'nochoice'}}" bindtap="getYearTopics"><text>年榜</text></view>
+  <view class="top_span tops"></view>
+  <view class="tops {{user==1?'choice':'nochoice'}}" bindtap="getHotUsers"><text>博主</text></view>
+  <view class="top_span tops"></view>
+  <view class="tops {{menu==1?'choice':'nochoice'}}" bindtap="getHotMenus"><text>标签</text></view>
+</view>
