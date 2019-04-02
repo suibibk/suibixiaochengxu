@@ -1,12 +1,30 @@
 // pages/sb/sb.js
 var url = "https://www.suibibk.com";
+var topics = [];
+var type=0;
+var page=1;
+var one=true;
 Page({
   data: {
     motto: 'Hello World',
     topics: [],
-    new: 1
+    new: 1,
+    msg:"正在加载...",
+    displayType:"none"
   },
-  getTopics: function (page,type) {
+  //跳转到我的博客
+  topic: function (event) {
+    console.log(event);
+    var id = event.currentTarget.id;
+    wx.navigateTo({
+      url: '../topic/topic?id=' + id,
+    })
+  },
+  getTopics: function (type) {
+    if(!one){
+      return;
+    }
+    one=false;
     wx.request({
       url: url + "/getTopics",
       data: {
@@ -24,16 +42,32 @@ Page({
       },
       //success: function(res) {
       success: res => {
+        one=true;
         console.log(res.data)
-        var topics = res.data.obj;
-        for (var index in topics) {
-          topics[index].description= topics[index].description.replace(/\/fileupload\/images/g, url + "/fileupload/images/");
+        var new_topics= res.data.obj;
+        var len = new_topics.length;
+        if(len==0){
+          this.setData({
+            msg:"未查询到记录",
+            displayType: "none"
+          });
+        }else{
+          for (var index in new_topics) {
+            new_topics[index].description = new_topics[index].description.replace(/\/fileupload\/images/g, url + "/fileupload/images/");
+            //new_topics[index].description = new_topics[index].description.replace(/\/xheditor\/xheditor_emot/g, url + "/xheditor/xheditor_emot/");
+            new_topics[index].description = new_topics[index].description.replace(/\/editormd\/plugins/g, url + "/editormd/plugins/");
+          }
+          topics = topics.concat(new_topics)
+          this.setData({
+            msg:"",
+            displayType: "block",
+            topics: topics
+          });
         }
-        this.setData({
-          topics: topics
-        });
+        
       },
       fail: function (err) {
+        one = true;
         console.log(err)
       }
     })
@@ -42,7 +76,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getTopics(1,0);
+    type=0;
+    topics = [];
+    page=1;
+    this.getTopics(0);
   },
   //事件处理函数
   getNewTopics: function () {
@@ -53,7 +90,10 @@ Page({
       user: 0,
       menu: 0
     });
-    this.getTopics(1, 0);
+    topics = [];
+    type = 0;
+    page=1;
+    this.getTopics(0);
   },
   //事件处理函数
   getMonthTopics: function () {
@@ -64,7 +104,10 @@ Page({
       user: 0,
       menu: 0
     });
-    this.getTopics(1, 2);
+    topics = [];
+    type = 2;
+    page=1;
+    this.getTopics(2);
   },
   //事件处理函数
   getYearTopics: function () {
@@ -75,7 +118,10 @@ Page({
       user: 0,
       menu: 0
     });
-    this.getTopics(1, 3);
+    topics = [];
+    type =3;
+    page=1;
+    this.getTopics(3);
   },
   //事件处理函数
   getHotUsers: function () {
@@ -96,5 +142,16 @@ Page({
       user: 0,
       menu: 1
     });
+  },
+  more:function(){
+    page=page+1;
+    this.getTopics(type);
+    this.setData({
+      msg: "正在加载..."
+    });
+  },
+  onReachBottom: function () {
+    console.log("底部");
+    this.more();
   }
 })

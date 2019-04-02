@@ -1,4 +1,5 @@
 <!--pages/sb/sb.wxml-->
+<view id="first"><image src="https://www.suibibk.com/image/logo.png"></image>suibibk.com</view>
 <view class="top">
   <view class="tops {{new==1?'choice':'nochoice'}}" bindtap="getNewTopics"><text>最新</text></view>
   <view class="top_span tops"></view>
@@ -15,7 +16,7 @@
 </view>
 <view id="topic">
   <view  wx:for="{{topics}}" wx:for-index="idx" wx:for-item="topic">
-    <view class="topics">
+    <view class="topics" bindtap="topic" id="{{topic.id}}|{{topic.menuid}}|{{topic.userid}}">
       <view class="title">{{topic.title}}</view>
       <view class="time">{{topic.create_datetime}}</view>
       <view class="desc"><rich-text nodes="{{topic.description}}"></rich-text></view>
@@ -28,4 +29,8 @@
       </view>
     </view>
   </view> 
+</view>
+<view class="tools">
+  <view>{{msg}}</view>
+  <!--<view class="more" style="display:{{displayType}}" bindtap="more">下一页</view>-->
 </view>

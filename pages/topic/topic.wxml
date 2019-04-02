@@ -1,0 +1,26 @@
+<!--pages/topic/topic.wxml-->
+<!--使用towxml-->
+<view id="first" bindtap='suibibk'>suibibk.com</view>
+<import src="/towxml/entry.wxml"/>
+<view id="topic">
+  <view id="title">{{title}}</view>
+  <view id="time">{{time}}</view>
+  <view id="info">
+    <view id="info1">
+      <image src="{{userimgurl}}"></image>
+    </view>
+    <view id="info2">
+      <view id="info21">
+        <view id="user">{{username}}</view><view>{{shu}}</view>
+        <view id="menu">{{menuname}}</view>
+      </view>
+      <view class="info22">
+        <view class="read">{{pageview}}</view>
+        <view class="reply">{{reply}}</view>
+        <view class="hot">{{hot}}</view>
+      </view>
+       
+    </view>
+  </view>
+  <template is="entry" data="{{...article}}"/>
+</view>

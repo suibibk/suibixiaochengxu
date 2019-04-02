@@ -1,0 +1,86 @@
+/* pages/topic/topic.wxss */
+/**基础风格样式**/
+@import '/towxml/style/main.wxss';
+/**主题配色（浅色样式）**/
+@import '/towxml/style/theme/light.wxss';
+
+/**主题配色（深色样式）**/
+@import '/towxml/style/theme/dark.wxss';
+#first{
+  height: 40px;
+    /* background: #D7C8A2; */
+    line-height: 40px;
+    width: 100%;
+    font-size: 18px;
+    color: #724E33;
+    overflow: hidden;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    text-align: center;
+}
+#first image {
+    height: 25px;
+    width: 44px;
+    vertical-align: text-bottom;
+}
+#topic{
+  width:95%;
+  margin: 0px auto;
+  margin-bottom: 30px;
+  margin-top: 60px;
+}
+#title{
+  font-size: 30px;
+    color: #000;
+    line-height: 1.3;
+    background: #fff;
+}
+#time{
+   font-size: 16px;
+    color: #B5B5B6;
+    margin-top: 10px;
+}
+#info{
+     margin-top: 20px;
+}
+#info1 {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+#info2 {
+    display: inline-block;
+    vertical-align: middle;
+    padding-bottom: 10px;
+}
+#info1 image {
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+#info21 {
+    margin-bottom: 5px;
+    font-size: 25px;
+    color: #3E3A39;
+    cursor: pointer;
+    background: #fff;
+}
+#info21 view{
+  display: inline-block
+}
+.info22 {
+    font-size: 16px;
+    color: #B5B5B6;
+    background: #fff;
+}
+.info22 view{
+  display: inline-block;
+  font-size: 16px;
+    color: #B5B5B6;
+    margin-right: 5px;
+}
