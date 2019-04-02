@@ -4,9 +4,28 @@
   <view class="top_span tops"></view>
   <view class="tops {{month==1?'choice':'nochoice'}}" bindtap="getMonthTopics"><text>月榜</text></view>
   <view class="top_span tops"></view>
-  <view class="tops {{year==1?'choice':'nochoice'}}" bindtap="getYearTopics"><text>年榜</text></view>
+  <view class="tops {{year==1?'choice':'nochoice'}}" bindtap="getYearTopics"><text>年榜
+</text></view>
+<!--
   <view class="top_span tops"></view>
   <view class="tops {{user==1?'choice':'nochoice'}}" bindtap="getHotUsers"><text>博主</text></view>
   <view class="top_span tops"></view>
   <view class="tops {{menu==1?'choice':'nochoice'}}" bindtap="getHotMenus"><text>标签</text></view>
+-->
+</view>
+<view id="topic">
+  <view  wx:for="{{topics}}" wx:for-index="idx" wx:for-item="topic">
+    <view class="topics">
+      <view class="title">{{topic.title}}</view>
+      <view class="time">{{topic.create_datetime}}</view>
+      <view class="desc"><rich-text nodes="{{topic.description}}"></rich-text></view>
+      <view class="info">
+        <view class="user"><image  src="{{topic.u_imgurl}}"></image>{{topic.u_name}}</view>|
+        <view class="menu">{{topic.m_name}}</view>
+        <view class="read">阅读:{{topic.pageview}}</view>
+        <view class="reply">回复:{{topic.replynum}}</view>
+        <view class="hot">点赞:{{topic.hot}}</view>
+      </view>
+    </view>
+  </view> 
 </view>
