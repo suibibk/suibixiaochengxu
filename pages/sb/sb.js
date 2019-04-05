@@ -20,7 +20,7 @@ Page({
       url: '../topic/topic?id=' + id,
     })
   },
-  getTopics: function (type) {
+  getTopics: function (type,hot) {
     if(!one){
       return;
     }
@@ -31,7 +31,7 @@ Page({
         menuid: '0',
         userid: '0',
         page: page,
-        hot: '',
+        hot: hot,
         type: type
       },
       method: "POST",
@@ -79,7 +79,7 @@ Page({
     type=0;
     topics = [];
     page=1;
-    this.getTopics(0);
+    this.getTopics(0,'');
   },
   //事件处理函数
   getNewTopics: function () {
@@ -93,7 +93,7 @@ Page({
     topics = [];
     type = 0;
     page=1;
-    this.getTopics(0);
+    this.getTopics(0,'');
   },
   //事件处理函数
   getMonthTopics: function () {
@@ -107,7 +107,7 @@ Page({
     topics = [];
     type = 2;
     page=1;
-    this.getTopics(2);
+    this.getTopics(2,1);
   },
   //事件处理函数
   getYearTopics: function () {
@@ -121,7 +121,7 @@ Page({
     topics = [];
     type =3;
     page=1;
-    this.getTopics(3);
+    this.getTopics(3,1);
   },
   //事件处理函数
   getHotUsers: function () {
