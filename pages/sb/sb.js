@@ -191,9 +191,27 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
-   */
+  * 用户点击右上角分享
+  */
   onShareAppMessage: function () {
-
+    var title ="更多博文笔记，请访问随笔博客站点suibibk.com"
+    let path = this.getCurrentPageUrlWithArgs()
+    console.log("title:" + title)
+    console.log("path:" + path)
+    return {
+      title: title,
+      path: path,
+      success: function (res) {
+        wx.showToast({
+          title: '分享成功',
+        })
+      }
+    }
+  },
+  getCurrentPageUrlWithArgs: function () {
+    var pages = getCurrentPages()
+    var currentPage = pages[pages.length - 1]
+    var url = currentPage.route
+    return url;
   }
 })

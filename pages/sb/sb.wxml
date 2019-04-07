@@ -16,7 +16,7 @@
 </view>
 <view id="topic">
   <view  wx:for="{{topics}}" wx:for-index="idx" wx:for-item="topic">
-    <view class="topics" bindtap="topic" id="{{topic.id}}|{{topic.menuid}}|{{topic.userid}}">
+    <view class="topics" bindtap="topic" id="{{topic.id}}A{{topic.menuid}}A{{topic.userid}}">
       <view class="title">{{topic.title}}</view>
       <view class="time">{{topic.create_datetime}}</view>
       <view class="desc"><rich-text nodes="{{topic.description}}"></rich-text></view>

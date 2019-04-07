@@ -1,6 +1,7 @@
 // pages/topic/topic.js
 const app = getApp();
 var url = "https://www.suibibk.com";
+var title = "";
 Page({
   data: {
   },
@@ -10,9 +11,12 @@ Page({
   onLoad: function (options) {
     //先从参数获取id
     var id = options.id;
+    console.log("id:"+id);
     if (id==undefined){
+      console.log("undefined");
       //从缓存获取(同步)
       var oldid = wx.getStorageSync("id");
+      console.log("oldid="+oldid);
       if (oldid==""){
         //跳走到首页
         wx.navigateTo({
@@ -26,7 +30,7 @@ Page({
       wx.setStorageSync("id", id)
     }
     //获取topicid、menuid、userid
-    var strs = id.split("|");
+    var strs = id.split("A");
     var topicid= strs[0];
     var menuid = strs[1];
     var userid = strs[2];
@@ -59,7 +63,7 @@ Page({
         console.log(res.data)
         var topic = res.data.obj.topic;
         var content = res.data.obj.tContent;
-        var title = topic.title;
+        title = topic.title;
         //wx.setNavigationBarTitle({ title: title})
         //将markdown内容转换为towxml数据
         var contentNow = content.content.replace(/\/fileupload\/images/g, url + "/fileupload/images/");
@@ -185,6 +189,25 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    let path = this.getCurrentPageUrlWithArgs()
+    console.log("title:"+title)
+    console.log("path:"+path)
+    return{
+      title:title,
+      path:path,
+      success:function(res){
+        wx.showToast({
+          title: '分享成功',
+        })
+      }
+    }
+  },
+  getCurrentPageUrlWithArgs:function (){
+    var pages = getCurrentPages()
+    var currentPage= pages[pages.length-1]
+    var url = currentPage.route
+    var options = currentPage.options
+    var path = url+"?id="+options.id;
+    return path;
   }
 })
