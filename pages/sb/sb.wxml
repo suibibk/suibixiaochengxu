@@ -1,7 +1,7 @@
 <!--pages/sb/sb.wxml-->
 <view id="first"><image src="https://www.suibibk.com/image/logo.png"></image>suibibk.com</view>
 <view class="top">
-  <view class="tops {{new==1?'choice':'nochoice'}}" bindtap="getNewTopics"><text>最新</text></view>
+  <view class="tops {{new==1?'choice':'nochoice'}}" bindtap="getNewTopics"><text>推荐</text></view>
   <view class="top_span tops"></view>
   <view class="tops {{month==1?'choice':'nochoice'}}" bindtap="getMonthTopics"><text>月榜</text></view>
   <view class="top_span tops"></view>

@@ -145,7 +145,16 @@ Page({
   },
   more:function(){
     page=page+1;
-    this.getTopics(type);
+    if(type==0){
+      this.getTopics(type,'');
+    }
+    if (type == 2) {
+      this.getTopics(type, '1');
+    }
+    if (type == 3) {
+      this.getTopics(type, '1');
+    }
+   
     this.setData({
       msg: "正在加载..."
     });
